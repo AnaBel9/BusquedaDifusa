@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry" oor:name="CalcAddIns" oor:package="org.openoffice.Office">
+  <node oor:name="AddInInfo">
+    <node oor:name="org.ejemplo.BusquedaDifusa" oor:op="replace">
+      <node oor:name="AddInFunctions">
+        <node oor:name="levNgrams" oor:op="replace">
+          <prop oor:name="DisplayName">
+            <value xml:lang="es">BUSQUEDA_DIFUSA</value>
+            <value xml:lang="en">FUZZY_COMPARE</value>
+          </prop>
+          <prop oor:name="Description">
+            <value xml:lang="es">Devuelve la medida de similitud entre dos palabras</value>
+            <value xml:lang="en">Returns similarity measure between two words</value>
+          </prop>
+          <prop oor:name="Category">
+            <value>Add-In</value>
+          </prop>
+          <node oor:name="Parameters">
+            <node oor:name="a" oor:op="replace">
+              <prop oor:name="DisplayName">
+                <value xml:lang="es">Palabra A</value>
+                <value xml:lang="en">Word A</value>
+              </prop>
+            </node>
+            <node oor:name="b" oor:op="replace">
+              <prop oor:name="DisplayName">
+                <value xml:lang="es">Palabra B</value>
+                <value xml:lang="en">Word B</value>
+              </prop>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+</oor:component-data>

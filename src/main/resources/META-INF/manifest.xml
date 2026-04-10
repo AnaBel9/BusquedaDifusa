@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=RDB"
+                         manifest:full-path="MiInterfaz.rdb"/>
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-component;type=Java"
+                         manifest:full-path="extension-bdifusa-1.0-SNAPSHOT.jar">
+        <manifest:attribute manifest:name="RegistrationClassName" manifest:value="org.ejemplo.CentralRegistrationClass"/>
+    </manifest:file-entry>
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data"
+                         manifest:full-path="registry/data/org/openoffice/Office/CalcAddIns.xcu"/>
+</manifest:manifest>
