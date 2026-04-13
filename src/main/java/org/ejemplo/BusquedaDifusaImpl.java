@@ -63,7 +63,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
     }
 
     @Override
-    public double levNgrams(String a, String b) {
+    public double levNgrams(String a, String b, int modo) {
 
         if (a.isEmpty() && b.isEmpty()) return 1.0;
         if (a.isEmpty() || b.isEmpty()) return 0.0;
@@ -71,8 +71,90 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         String p1norm = normalizar(a);
         String p2norm = normalizar(b);
 
-        Set<String> A = ngramsSet(p1norm, 3);
-        Set<String> B = ngramsSet(p2norm, 3);
+        if(modo == 1){
+            //LEVENSTEIN
+            return matrizLevenshtein(p1norm, p2norm)[p1norm.length()][p2norm.length()];
+        }else if (modo == 2){
+            //3-GRAMAS
+            Set<String> A = ngramsSet(p1norm, 3);
+            Set<String> B = ngramsSet(p2norm, 3);
+            if(A.size() < B.size()){
+                A.retainAll(B);
+                return A.size();
+            }else{
+                B.retainAll(A);
+                return B.size();
+            }
+        }else{
+            //MEZCLA
+            return mezcla(p1norm, p2norm);
+        }
+
+    }
+
+    private String normalizar(String texto) {
+
+        java.util.Locale javaLocale = new java.util.Locale(m_locale.Language, m_locale.Country);
+        texto = texto.toLowerCase(javaLocale);
+
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("\\p{M}", "");
+
+        texto = texto.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}\\s]", "");
+
+        texto = texto.replaceAll("\\s+", " ");
+
+        texto = texto.replaceAll("\\s+$", "");
+        texto = " " + texto.replaceAll("^\\s+", "");
+
+        return texto;
+    }
+
+    private int[][] matrizLevenshtein(String xs, String ys) {
+        int n = xs.length();
+        int m = ys.length();
+
+        int[][] q = new int[n + 1][m + 1];
+
+        for (int i = 0; i <= n; i++) q[i][0] = i;
+        for (int j = 0; j <= m; j++) q[0][j] = j;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+
+                if (xs.charAt(i - 1) == ys.charAt(j - 1)) {
+                    q[i][j] = q[i - 1][j - 1];
+                } else {
+                    q[i][j] = 1 + Math.min(
+                            Math.min(q[i - 1][j], q[i][j - 1]),
+                            q[i - 1][j - 1]
+                    );
+                }
+            }
+        }
+
+        return q;
+    }
+
+    private Set<String> ngramsSet(String s, int n) {
+
+        Set<String> output = new HashSet<>();
+
+        if (s.length() < n) {
+            output.add(s);
+            return output;
+        }
+
+        for (int i = 0; i <= s.length() - n; i++) {
+            output.add(s.substring(i, i + n));
+        }
+
+        return output;
+    }
+
+    private double mezcla(String p1, String p2){
+        Set<String> A = ngramsSet(p1, 3);
+        Set<String> B = ngramsSet(p2, 3);
 
         double A2B = 0.0;
         double B2A = 0.0;
@@ -114,66 +196,6 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         B2A = B2A / B.size();
 
         return Math.round(((A2B + B2A) / 2) * 100.0) / 100.0;
-    }
-
-    private String normalizar(String texto) {
-
-        java.util.Locale javaLocale = new java.util.Locale(m_locale.Language, m_locale.Country);
-        texto = texto.toLowerCase(javaLocale);
-
-        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
-        texto = texto.replaceAll("\\p{M}", "");
-
-        texto = texto.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}\\s]", "");
-
-        texto = texto.replaceAll("\\s+", " ");
-
-        texto = texto.replaceAll("\\s+$", "");
-        texto = " " + texto.replaceAll("^\\s+", "");
-
-        return texto;
-    }
-
-    private Set<String> ngramsSet(String s, int n) {
-
-        Set<String> output = new HashSet<>();
-
-        if (s.length() < n) {
-            output.add(s);
-            return output;
-        }
-
-        for (int i = 0; i <= s.length() - n; i++) {
-            output.add(s.substring(i, i + n));
-        }
-
-        return output;
-    }
-
-    private int[][] matrizLevenshtein(String xs, String ys) {
-        int n = xs.length();
-        int m = ys.length();
-
-        int[][] q = new int[n + 1][m + 1];
-
-        for (int i = 0; i <= n; i++) q[i][0] = i;
-        for (int j = 0; j <= m; j++) q[0][j] = j;
-
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= m; j++) {
-
-                if (xs.charAt(i - 1) == ys.charAt(j - 1)) {
-                    q[i][j] = q[i - 1][j - 1];
-                } else {
-                    q[i][j] = 1 + Math.min(
-                            Math.min(q[i - 1][j], q[i][j - 1]),
-                            q[i - 1][j - 1]
-                    );
-                }
-            }
-        }
-
-        return q;
     }
 
 }

@@ -28,6 +28,12 @@
                 <value xml:lang="en">Word B</value>
               </prop>
             </node>
+            <node oor:name="modo" oor:op="replace">
+              <prop oor:name="DisplayName">
+                <value xml:lang="es">Modo</value>
+                <value xml:lang="en">Mode</value>
+              </prop>
+            </node>
           </node>
         </node>
       </node>

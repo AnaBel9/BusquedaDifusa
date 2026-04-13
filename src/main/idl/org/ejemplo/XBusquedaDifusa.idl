@@ -10,7 +10,7 @@ module org { module ejemplo {
 
         interface ::com::sun::star::lang::XLocalizable;
 
-        double levNgrams( [in] string a, [in] string b );
+        double levNgrams( [in] string a, [in] string b , [in] long modo);
     };
 
     service BusquedaDifusa : XBusquedaDifusa;
