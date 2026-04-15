@@ -21,17 +21,29 @@
                 <value xml:lang="es">Palabra A</value>
                 <value xml:lang="en">Word A</value>
               </prop>
+              <prop oor:name="Description">
+                <value xml:lang="es">Primera palabra</value>
+                <value xml:lang="en">First word</value>
+              </prop>
             </node>
             <node oor:name="b" oor:op="replace">
               <prop oor:name="DisplayName">
                 <value xml:lang="es">Palabra B</value>
                 <value xml:lang="en">Word B</value>
               </prop>
+              <prop oor:name="Description">
+                <value xml:lang="es">Segunda palabra</value>
+                <value xml:lang="en">Second word</value>
+              </prop>
             </node>
             <node oor:name="modo" oor:op="replace">
               <prop oor:name="DisplayName">
                 <value xml:lang="es">Modo</value>
                 <value xml:lang="en">Mode</value>
+              </prop>
+              <prop oor:name="Description">
+                <value xml:lang="es">Opcional: 1=Lev, 2=Ngrams, 3=Mezcla (defecto)</value>
+                <value xml:lang="en">Optional: 1=Lev, 2=Ngrams, 3=Mix (default)</value>
               </prop>
             </node>
           </node>

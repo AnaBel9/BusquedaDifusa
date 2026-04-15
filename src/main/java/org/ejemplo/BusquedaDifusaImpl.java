@@ -63,7 +63,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
     }
 
     @Override
-    public double levNgrams(String a, String b, int modo) {
+    public double levNgrams(String a, String b, Object modo) {
 
         if (a.isEmpty() && b.isEmpty()) return 1.0;
         if (a.isEmpty() || b.isEmpty()) return 0.0;
@@ -71,10 +71,18 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         String p1norm = normalizar(a);
         String p2norm = normalizar(b);
 
-        if(modo == 1){
+        int valorModo = 3;
+
+        if(modo instanceof Integer){
+            valorModo = (Integer) modo;
+        }else if(modo instanceof Double){
+            valorModo = ((Double) modo).intValue();
+        }
+
+        if(valorModo == 1){
             //LEVENSTEIN
             return matrizLevenshtein(p1norm, p2norm)[p1norm.length()][p2norm.length()];
-        }else if (modo == 2){
+        }else if (valorModo == 2){
             //3-GRAMAS
             Set<String> A = ngramsSet(p1norm, 3);
             Set<String> B = ngramsSet(p2norm, 3);
