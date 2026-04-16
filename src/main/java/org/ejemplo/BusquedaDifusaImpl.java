@@ -9,7 +9,9 @@ import com.sun.star.lang.XSingleComponentFactory;
 import com.sun.star.lang.XLocalizable;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocalizable, XBusquedaDifusa{
@@ -84,15 +86,21 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
             return matrizLevenshtein(p1norm, p2norm)[p1norm.length()][p2norm.length()];
         }else if (valorModo == 2){
             //3-GRAMAS
-            Set<String> A = ngramsSet(p1norm, 3);
-            Set<String> B = ngramsSet(p2norm, 3);
-            if(A.size() < B.size()){
-                A.retainAll(B);
-                return A.size();
-            }else{
-                B.retainAll(A);
-                return B.size();
+            List<String> A = ngramsList(p1norm, 3);
+            List<String> B = ngramsList(p2norm, 3);
+
+            List<String> Bcopy = new ArrayList<>(B);
+
+            int comunes = 0;
+
+            for (String g : A) {
+                if (Bcopy.contains(g)) {
+                    comunes++;
+                    Bcopy.remove(g); // evita contar repetidos varias veces
+                }
             }
+
+            return comunes;
         }else{
             //MEZCLA
             return mezcla(p1norm, p2norm);
@@ -144,9 +152,9 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         return q;
     }
 
-    private Set<String> ngramsSet(String s, int n) {
+    private List<String> ngramsList(String s, int n) {
 
-        Set<String> output = new HashSet<>();
+        List<String> output = new ArrayList<>();
 
         if (s.length() < n) {
             output.add(s);
@@ -161,23 +169,39 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
     }
 
     private double mezcla(String p1, String p2){
-        Set<String> A = ngramsSet(p1, 3);
-        Set<String> B = ngramsSet(p2, 3);
+        List<String> A = ngramsList(p1, 3);
+        List<String> B = ngramsList(p2, 3);
 
         double A2B = 0.0;
         double B2A = 0.0;
 
+        //COMPARACIÓN A -> B
+        List<String> Bcopy = new ArrayList<>(B);
+
         for (String i : A) {
 
+            if(Bcopy.isEmpty()) break;
+
             double mejorAB = 0.0;
+            int indice = -1;
 
-            for (String j : B) {
+            for(int j = 0; j < Bcopy.size(); j++){
+                String grama = Bcopy.get(j);
 
-                int lev = matrizLevenshtein(i, j)[i.length()][j.length()];
+                int lev = matrizLevenshtein(i, grama)[i.length()][grama.length()];
                 double dist = (double) (i.length() - lev) / i.length();
 
-                if (dist > mejorAB)
+                if (dist > mejorAB){
                     mejorAB = dist;
+                    indice = j;
+                }
+
+                if(dist >= 1.0) break;
+
+            }
+
+            if(indice != -1){
+                Bcopy.remove(indice);
             }
 
             A2B += mejorAB;
@@ -185,17 +209,33 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
 
         A2B = A2B / A.size();
 
+        //COMPARACIÓN B -> A
+        List<String> Acopy = new ArrayList<>(A);
+
         for (String i : B) {
 
+            if(Acopy.isEmpty()) break;
+
             double mejorBA = 0.0;
+            int indice = -1;
 
-            for (String j : A) {
+            for(int j = 0; j < Acopy.size(); j++){
+                String grama = Acopy.get(j);
 
-                int lev = matrizLevenshtein(i, j)[i.length()][j.length()];
+                int lev = matrizLevenshtein(i, grama)[i.length()][grama.length()];
                 double dist = (double) (i.length() - lev) / i.length();
 
-                if (dist > mejorBA)
+                if (dist > mejorBA){
                     mejorBA = dist;
+                    indice = j;
+                }
+
+                if(dist >= 1.0) break;
+
+            }
+
+            if(indice != -1){
+                Acopy.remove(indice);
             }
 
             B2A += mejorBA;
