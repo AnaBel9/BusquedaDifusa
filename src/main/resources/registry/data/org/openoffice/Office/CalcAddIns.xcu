@@ -9,8 +9,8 @@
             <value xml:lang="en">FUZZY_COMPARE</value>
           </prop>
           <prop oor:name="Description">
-            <value xml:lang="es">Devuelve la medida de similitud entre dos palabras</value>
-            <value xml:lang="en">Returns similarity measure between two words</value>
+            <value xml:lang="es">Devuelve la medida de similitud entre dos palabras.&#10;Ayuda detallada dentro de la carpeta.</value>
+            <value xml:lang="en">Returns similarity measure between two words.&#10;Detailed help inside the folder.</value>
           </prop>
           <prop oor:name="Category">
             <value>Add-In</value>
