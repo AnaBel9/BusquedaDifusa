@@ -20,7 +20,47 @@ public class MetricasTest {
                 {"algoritmo", "logaritmo"},
                 {"LibreOffice", "Libre Office"},
                 {"música", "musica"},
-                {"desoxirribonucleico", "desoxirribunucleico"}
+                {"desoxirribonucleico", "desoxirribunucleico"},
+                {"casa", "calle"},
+                {"calle", "casa"},
+                {"casa", "casa"},
+                {"ana", "maria"},
+                {"agua", "manantial"},
+                {"patata", "palabra"},
+                {"roberto", "alberto"},
+                {"cateto", "cateta"},
+                {"Juan Pérez y A. Belen Alba", "A. B. Alba, J. Perez"},
+                {"elliot", "ellie"},
+                {"jose", "José Vélez"},
+                {"lavadora", "cegadora"},
+                {"Ana Belen, Alba", "Ana Belen Alba"},
+                {"مدرسة", "مدرسيّة"},
+                {"2 cerezas", "3 cerezas"},
+                {"经济发展", "经济发达"},
+                {"文化交流", "文化教育"},
+                {"123456", "1234"},
+                {"经济发展", "palabra"},
+                {"水", "电脑"},
+                {"مدرسة", "شمس"},
+                {"中国", "中文"},
+                {"hola", ""},
+                {"aaaaa", "aaa"},
+                {"aaabaaa", "aaaaaa"},
+                {"marinayjavier@marinayjavier.com", "https://www.tapiceroscortinasvigo.com"},
+                // Nuevos casos (árabe)
+                {"كتاب", "كتاب"},
+                {"كبرى", "كبير"},
+                {"مدرسة", "شمس"},
+
+                // Nuevos casos (chino)
+                {"学生", "学生"},
+                {"中国", "中文"},
+                {"水", "电脑"},
+
+                // Nuevos casos (japonés)
+                {"ねこ", "ねこ"},
+                {"がくせい", "がっこう"},
+                {"山", "テレビ"}
         };
 
         System.out.println("=== INICIANDO LABORATORIO DE MÉTRICAS ===");
@@ -156,8 +196,8 @@ public class MetricasTest {
         BusquedaDifusaImpl motor = new BusquedaDifusaImpl(null);
 
         // 2. CONFIGURA AQUÍ TUS PALABRAS PARA PRUEBAS
-        String palabra1 = "marinayjavier@marinayjavier.com";
-        String palabra2 = "https://www.tapiceroscortinasvigo.com";
+        String palabra1 = "Vegano";
+        String palabra2 = "Vegetal";
 
         System.out.println("=== INICIANDO DEBUG ===");
         System.out.println("Palabra 1: [" + palabra1 + "]");

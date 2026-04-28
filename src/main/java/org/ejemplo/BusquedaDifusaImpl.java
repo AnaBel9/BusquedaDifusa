@@ -225,7 +225,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
                 String grama = Acopy.get(j);
 
                 int lev = matrizLevenshtein(i, grama)[i.length()][grama.length()];
-                double dist = (double) (i.length() - lev) / i.length();
+                double dist = 1.0 - (double) lev / Math.max(i.length(), grama.length());
 
                 if (dist < 0.5) dist = 0.0;
 
