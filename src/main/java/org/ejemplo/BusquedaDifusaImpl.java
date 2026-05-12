@@ -121,7 +121,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         texto = texto.replaceAll("\\s+", " ");
 
         texto = texto.replaceAll("\\s+$", "");
-        texto = " " + texto.replaceAll("^\\s+", "");
+        //texto = " " + texto.replaceAll("^\\s+", "");
 
         return texto;
     }

@@ -196,8 +196,8 @@ public class MetricasTest {
         BusquedaDifusaImpl motor = new BusquedaDifusaImpl(null);
 
         // 2. CONFIGURA AQUÍ TUS PALABRAS PARA PRUEBAS
-        String palabra1 = "Vegano";
-        String palabra2 = "Vegetal";
+        String palabra1 = "Ana";
+        String palabra2 = "An";
 
         System.out.println("=== INICIANDO DEBUG ===");
         System.out.println("Palabra 1: [" + palabra1 + "]");
