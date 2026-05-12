@@ -1,0 +1,1 @@
+Tool for performing approximate text comparisons in LibreOffice.
