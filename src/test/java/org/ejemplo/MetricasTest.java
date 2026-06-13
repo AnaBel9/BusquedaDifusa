@@ -59,7 +59,7 @@ public class MetricasTest {
 
                 // Nuevos casos (japonés)
                 {"ねこ", "ねこ"},
-                {"がくせい", "がっこう"},
+                {"がくせい", "がくしゃ"},
                 {"山", "テレビ"}
         };
 
@@ -99,7 +99,7 @@ public class MetricasTest {
         List<String> todasLasLineas = Files.readAllLines(inputPath);
         todasLasLineas.remove(0); // Quitar cabecera
 
-        int[] intervalos = {10, 50, 100, 250, 500, 1000};
+        int[] intervalos = {100, 500, 1000, 5000, 10000, 25000, 50000, 75000, 100000};
 
         // Preparar el archivo de resultados con su propia cabecera
         List<String> filasDestino = new ArrayList<>();
@@ -196,8 +196,8 @@ public class MetricasTest {
         BusquedaDifusaImpl motor = new BusquedaDifusaImpl(null);
 
         // 2. CONFIGURA AQUÍ TUS PALABRAS PARA PRUEBAS
-        String palabra1 = "Ana";
-        String palabra2 = "An";
+        String palabra1 = "hola";
+        String palabra2 = "hol";
 
         System.out.println("=== INICIANDO DEBUG ===");
         System.out.println("Palabra 1: [" + palabra1 + "]");
