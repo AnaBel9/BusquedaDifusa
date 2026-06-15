@@ -14,8 +14,8 @@ public class Mezcla {
         List<String> A = trigramas.ngramsList(p1, 3);
         List<String> B = trigramas.ngramsList(p2, 3);
 
-        double A2B = comparar(A, B);
-        double B2A = comparar(B, A);
+        double A2B = comparar(A, B); //A -> B
+        double B2A = comparar(B, A); //B -> A
 
         return Math.round(((A2B + B2A) / 2) * 100.0) / 100.0;
     }

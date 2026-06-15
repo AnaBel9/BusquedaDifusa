@@ -21,8 +21,8 @@ public class Levenshtein {
                     q[i][j] = q[i - 1][j - 1];
                 } else {
                     q[i][j] = 1 + Math.min(
-                            Math.min(q[i][j - 1], q[i - 1][j]),
-                            q[i - 1][j - 1]
+                            Math.min(q[i][j - 1], q[i - 1][j]), //inserción, eliminación
+                            q[i - 1][j - 1] //sustitución
                     );
                 }
             }

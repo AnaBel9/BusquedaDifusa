@@ -34,6 +34,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         return Factory.writeRegistryServiceInfo(m_implementationName, m_serviceNames, xRegistryKey);
     }
 
+    //XServiceInfo
     @Override
     public String getImplementationName() {
         return m_implementationName;
@@ -52,6 +53,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         return m_serviceNames;
     }
 
+    //XLocalizable
     public void setLocale(com.sun.star.lang.Locale eLocale) {
         m_locale = eLocale;
     }
@@ -60,6 +62,7 @@ public class BusquedaDifusaImpl extends WeakBase implements XServiceInfo, XLocal
         return m_locale;
     }
 
+    //XBusquedaDifusa
     @Override
     public double levNgrams(String a, String b, Object modo) {
 

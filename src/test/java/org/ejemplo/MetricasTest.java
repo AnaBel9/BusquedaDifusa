@@ -197,7 +197,7 @@ public class MetricasTest {
 
         // 2. CONFIGURA AQUÍ TUS PALABRAS PARA PRUEBAS
         String palabra1 = "hola";
-        String palabra2 = "hol";
+        String palabra2 = "";
 
         System.out.println("=== INICIANDO DEBUG ===");
         System.out.println("Palabra 1: [" + palabra1 + "]");

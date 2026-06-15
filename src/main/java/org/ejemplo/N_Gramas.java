@@ -13,7 +13,7 @@ public class N_Gramas {
             output.add(s);
             return output;
         }
-
+        //crea subsecuencias de n caracteres y las añade a la colección
         for (int i = 0; i <= s.length() - n; i++) {
             output.add(s.substring(i, i + n));
         }
@@ -23,6 +23,7 @@ public class N_Gramas {
 
     public int calcularComunes(List<String> A, List<String> B){
 
+        //si alguno de los dos conjuntos es vacío
         if(A.get(0).isEmpty() || B.get(0).isEmpty()) return 0;
 
         List<String> Bcopy = new ArrayList<>(B);
