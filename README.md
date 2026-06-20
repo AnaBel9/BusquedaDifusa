@@ -23,7 +23,33 @@ El proyecto ha sido desarrollado en Java utilizando las herramientas proporciona
 
 ## 📦 Instalación
 
-Por añadir.
+### 1. Descargar la extensión
+
+Descargue el archivo de instalación desde la sección de versiones del repositorio:
+
+**Extension_BusquedaDifusa.oxt**
+
+![Captura de GitHub](docs/Captura_GitHub.png)
+
+### 2. Instalar la extensión
+
+1. Abra LibreOffice Calc.
+2. Seleccione **Herramientas → Extensiones** en la barra de menús.
+3. En la ventana del gestor de extensiones, pulse **Añadir**.
+4. Seleccione el archivo **Extension_BusquedaDifusa.oxt** descargado previamente.
+5. Reinicie LibreOffice Calc para que los cambios surtan efecto.
+
+#### Acceso al gestor de extensiones
+
+![Herramientas - Extensiones](docs/Menu_Herramientas.png)
+
+#### Selección del archivo de instalación
+
+![Selección de la extensión](docs/Seleccion_Extension.png)
+
+#### Extensión instalada correctamente
+
+![Extensión instalada](docs/Captura_Extensión_Anadida.png)
 
 ## 🚀 Uso
 
